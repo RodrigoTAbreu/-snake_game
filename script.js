@@ -7,6 +7,10 @@ snake[0] = {
     y: 8 *box
 }
 let direction = "right";
+let food = { /* criando ao array da comida da cobra*/
+    x: Math.floor(Math.random() * 15 + 1)* box, /*Math Flor retira a parte flutuante do numero*/
+    y: Math.floor(Math.random() * 15 + 1)* box
+}
 
 function criarBG() {
     context.fillStyle = "lightgreen";
@@ -20,11 +24,16 @@ function criarCobrinha(){
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
 }
+/*desenhando a comida da cobra */
+function drawFood(){
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box);
+}
 
-document.addEventListener('keydown',update); /*pegando o evento de clic do teclado */
+document.addEventListener('keydown',update); /*pegando o evento de clic do teclado KEYDOWN*/
 
 function update (event){/* o numero 38,38 etc é referente ao evento de tecla respectivamente pra cima para baixo */
-    if(event.keyCode == 37 && direction != "right") direction = "left";
+    if(event.keyCode == 37 && direction != "right") direction = "left"; /*se o evento for 37 (direita) a direção é DIREITA e assim para os demais && a direação NÃO FOR a rigth(esqueda) ai ele executa */
     if(event.keyCode == 38 && direction != "down") direction = "up";
     if(event.keyCode == 39 && direction != "left") direction = "right";
     if(event.keyCode == 40 && direction != "up") direction = "down";
@@ -34,20 +43,40 @@ function update (event){/* o numero 38,38 etc é referente ao evento de tecla re
 
 
 function iniciarJogo(){
-    
+   
+   if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+   if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+   if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+   if(snake[0].x <0 && direction == "up") snake[0].y = 16 * box;
+
+   for (i = 1;  i < snake.length; i++){
+       if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
+           clearInterval(jogo);
+           alert('Game Over :(')
+       }
+   }
+
 
     criarBG();
     criarCobrinha();
+    drawFood();
 
-    let snakeX = snake[0].x; 
+    let snakeX = snake[0].x; /*posições inciais nos eixos X e Y*/
     let snakeY = snake[0].y;
 
-    if(direction == "right") snakeX += box;
-    if(direction == "left") snakeX -= box;
+    if(direction == "right") snakeX += box; /*se estiver indo para o lado esquerdo, no eixo X é acrescentado mais um quadrado no BOX */
+    if(direction == "left") snakeX -= box; /*neste caso ela diminui quando for na direção direita */
     if(direction == "up") snakeY -= box;
     if(direction == "down") snakeY += box;
 
-    snake.pop();
+    if(snakeX != food.x || snakeY != food.y){
+        snake.pop(); /*retira o ultimo elemento do array */
+
+    }else{ food.x = Math.floor(Math.random() * 15 + 1)* box,
+        food.y= Math.floor(Math.random() * 15 + 1)* box
+    }
+
+   
 
     let newHead = {
         x: snakeX,
@@ -57,7 +86,7 @@ function iniciarJogo(){
     snake.unshift(newHead);
 }
 
-let jogo = setInterval(iniciarJogo, 100);
+let jogo = setInterval(iniciarJogo, 200); /*setInterval faz  atualização do jogo a cada 100 milesegundos.*/
 
 
 
