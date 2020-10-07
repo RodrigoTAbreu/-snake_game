@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
 body{
     height: 95vh;
     width: 95;
@@ -6,4 +8,7 @@ body{
     align-items: center;
     flex-direction: column;
     color: rgb(31, 100, 31)6, 109, 36);
+}
+h1{
+    font-family: 'Orbitron', sans-serif;
 }
