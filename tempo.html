@@ -9,13 +9,22 @@
 <body >
     <h1>Trabalhando com tempo</h1>
     <h3>Objetivo é mostrar a Hora atual do computador local.</h3>
-    <div id="tempo"> TEMPO AQUI</div>
-    <input type="button" value="Hora Atual" onclick="atual">
+    <div id="tempo"> 
+        <p>
+            <SPAN id="timer_hora" >00</SPAN>
+            <SPAN id="timer_minuto" >00</SPAN>
+            <SPAN id="timer_segundo" >00</SPAN>
+            <SPAN id="timer_decimo" >00</SPAN>
+        </p>
 
+    </div>
+    <!---
+    <input type="button" value="Hora Atual" onclick="atual">
+        -->
     <hr>
     <div id="botao">
-        <input type="button" value="Inicia" onclick="inicio">
-        <input type="button" value="Para" onclick="parar">
+        <input id="inicia" type="button" value="Iniciar" onclick="iniciar()">
+        <input id="para" type="button" value="Para" onclick="parar()" style = display:none> <!---a opção STYLE=display:none  oculta o botão para ser mostrado por meio do javascript-->
     </div>
 
 </body>

@@ -1,3 +1,4 @@
+let cronometro = 0;
 let canvas = document.getElementById('snake');
 let context = canvas.getContext("2d");
 let box = 32;
@@ -48,11 +49,13 @@ function iniciarJogo(){
    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
    if(snake[0].x <0 && direction == "up") snake[0].y = 16 * box;
+  
 
    for (i = 1;  i < snake.length; i++){
        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
            clearInterval(jogo);
            alert('Game Over :(')
+           pararTempo();
        }
    }
 
@@ -88,6 +91,38 @@ function iniciarJogo(){
 
 let jogo = setInterval(iniciarJogo, 200); /*setInterval faz  atualização do jogo a cada 100 milesegundos.*/
 
+function iniciaTempo(){
+    let minuto = document.getElementById('tempo_minuto');
+    let segundo = document.getElementById('tempo_segundo');
+    let decimo = document.getElementById('tempo_decimo');
 
+    let m = 0 ; s = 0 ; d = 0;
+    
+    cronometro = setInterval(function(){
+        minuto.innerHTML = m < 10 ? '0' + m:m;
+        segundo.innerHTML = s < 10 ? '0' + s:s;
+        decimo.innerHTML = d <10 ? '0' + d:d;
+
+        if (d <9){
+            d++;
+        }else if(s < 59){
+            d = 0;
+            s ++
+        }else if(m<59 ){
+            d = 0;
+            s = 0;
+            m ++;
+        }
+
+    },100)
+   
+}
+ function pararTempo(){
+    clearInterval(cronometro);
+    document.getElementById('timer_minuto').innerHTML = "00";
+    document.getElementById('timer_segundo').innerHTML = "00";
+    document.getElementById('timer_decimo').innerHTML = "00";
+}
+ 
 
 
