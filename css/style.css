@@ -1,18 +1,40 @@
+body{
+
+}
+
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
 .corpo{
+    
     height: 95vh;
     width: 95;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: rgb(31, 100, 31)6, 109, 36);
+    color: rgb((31, 100, 31)6, 109, 36);
 }
 h1{
     font-family: 'Orbitron', sans-serif;
 }
 h3{
-   margin-top: 2px;
+   margin-top: 1px;
    margin-bottom: 1px;
+}
+
+div.op1 {
+    width: 8%;
+    display: inline-block;
+    background-color: rgb(109, 182, 121);
+    font-size: 2vw;
+    text-align:center;
+    margin-bottom: 5px;
+    min-width:10vw;
+}
+
+
+#tempo{
+    margin-top: 1px;
+    padding: 2px;
 }

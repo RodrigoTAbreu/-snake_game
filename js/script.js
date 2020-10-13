@@ -1,11 +1,16 @@
+
+
 let cronometro = 0;
 let canvas = document.getElementById('snake');
 let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
 snake[0] = {
-    x: 8 *box,
-    y: 8 *box
+    x: 0 *box,
+    y: 0 *box
+}
+if (snake[0]!=0){
+    iniciaTempo()
 }
 let direction = "right";
 let food = { /* criando ao array da comida da cobra*/
@@ -34,6 +39,7 @@ function drawFood(){
 document.addEventListener('keydown',update); /*pegando o evento de clic do teclado KEYDOWN*/
 
 function update (event){/* o numero 38,38 etc é referente ao evento de tecla respectivamente pra cima para baixo */
+    
     if(event.keyCode == 37 && direction != "right") direction = "left"; /*se o evento for 37 (direita) a direção é DIREITA e assim para os demais && a direação NÃO FOR a rigth(esqueda) ai ele executa */
     if(event.keyCode == 38 && direction != "down") direction = "up";
     if(event.keyCode == 39 && direction != "left") direction = "right";
@@ -45,17 +51,19 @@ function update (event){/* o numero 38,38 etc é referente ao evento de tecla re
 
 function iniciarJogo(){
    
-   if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+   if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0 ;
    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
    if(snake[0].x <0 && direction == "up") snake[0].y = 16 * box;
   
+    
 
    for (i = 1;  i < snake.length; i++){
        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
            clearInterval(jogo);
-           alert('Game Over :(')
+           alert('You Lose :(')
            pararTempo();
+           
        }
    }
 
@@ -91,6 +99,7 @@ function iniciarJogo(){
 
 let jogo = setInterval(iniciarJogo, 200); /*setInterval faz  atualização do jogo a cada 100 milesegundos.*/
 
+
 function iniciaTempo(){
     let minuto = document.getElementById('tempo_minuto');
     let segundo = document.getElementById('tempo_segundo');
@@ -124,5 +133,4 @@ function iniciaTempo(){
     document.getElementById('timer_decimo').innerHTML = "00";
 }
  
-
 
