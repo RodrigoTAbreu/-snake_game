@@ -5,6 +5,7 @@ let canvas = document.getElementById('snake');
 let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
+
 snake[0] = {
     x: 0 *box,
     y: 0 *box
@@ -62,6 +63,7 @@ function iniciarJogo(){
        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
            clearInterval(jogo);
            alert('You Lose :(')
+           pontos();
            pararTempo();
            
        }
@@ -133,4 +135,7 @@ function iniciaTempo(){
     document.getElementById('timer_decimo').innerHTML = "00";
 }
  
+function pontos(){
+    alert('Você fez'+ snake.length +'pontos.')
+}
 
